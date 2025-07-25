@@ -10,7 +10,6 @@ use App\Models\UserDetails;
 use App\Models\UserOtp;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -37,7 +36,7 @@ class AuthController extends Controller
             $data = User::create([
                 'name' => trim($request->name),
                 'mobile' => trim($request->mobile),
-            ]);
+            ])->assignRole('user');
 
             UserDetails::create(['user_id' => $data->id]);
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserDetailsRequest extends FormRequest
+class ChildDetailsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,6 @@ class UserDetailsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'nullable|file|mimes:jpg,jpeg,png,webp|max:200',
             'below_18_above_35' => 'required|boolean',
             'medical_condition' => 'required|boolean',
             'take_suppliments' => 'required|boolean',
@@ -46,8 +45,6 @@ class UserDetailsRequest extends FormRequest
     public function messages()
     {
         return [
-            'file.mimes' => 'Profile image must be a file of type: jpg, jpeg, png, webp',
-            'file.max' => 'Profile image may not be greater than 200 KB',
             'below_18_above_35.required' => 'Choose if the mother is below 18 or above 35 years old during pregnancy',
             'medical_condition.required' => 'Choose if the mother has any medical conditions',
             'take_suppliments.required' => 'Choose if the mother takes regular supplements',
