@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ChildDetailsController;
 use App\Http\Controllers\Api\ChildMasterController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,10 @@ Route::middleware(['auth:api'])->group(function () {
         Route::prefix('child')->group(function () {
             Route::apiResource('master', ChildMasterController::class)->except(['show', 'update']);
             Route::post('master/update/{id}', [ChildMasterController::class, 'update']);
+        });
+
+        Route::prefix('child/{id}')->group(function () {
+            Route::apiResource('details', ChildDetailsController::class)->except(['show']);
         });
     });
 });
